@@ -20,7 +20,7 @@ go.sum
 
 
 
-#
+#Elementos de ignorar de los lenguajes 
 [Bb]in/
 [Oo]bj/
 [Oo]ut/
