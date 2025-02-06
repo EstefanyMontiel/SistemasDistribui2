@@ -16,5 +16,6 @@ func main(){
 		peer.ConnectToPeer(connection,username)	
 	} else {
 		peer.StarListening(connection,username)
+		peer.StartListening(connection,username)
 	}
 }
