@@ -10,5 +10,7 @@ namespace PokemonApi.Infrastructure.Entities
         public int attack { get; set; }
         public int Defense { get; set; }
         public int Speed { get; set; }
+        public int Health { get; set; }
+
     }
 }

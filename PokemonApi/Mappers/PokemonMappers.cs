@@ -21,7 +21,8 @@ public static class PokemonMapper{
         Stats = new Stats{
                Attack = entity.attack,
                 Defense = entity.Defense,
-                Speed = entity.Speed
+                Speed = entity.Speed,
+                Health = entity.Health
     },
    };
 }
@@ -37,7 +38,9 @@ public static class PokemonMapper{
            {
                Attack = pokemon.Stats.Attack,
                Defense = pokemon.Stats.Defense,
-               Speed = pokemon.Stats.Speed
+               Speed = pokemon.Stats.Speed,
+                Health = pokemon.Stats.Health
+
            }
        };
    }
