@@ -25,6 +25,8 @@ namespace PokemonApi.Infrastructure
                 entity.Property(s=>s.attack).IsRequired(); //Ataque es requerido
                 entity.Property(s=>s.Defense).IsRequired(); //Defensa es requerido
                 entity.Property(s=>s.Speed).IsRequired(); //Velocidad es requerido
+                entity.Property(s=>s.Health).IsRequired(); //Vida es requerido
+
             }); 
 
          }
