@@ -8,13 +8,9 @@ import (
 )
 var username string
 
-func StarListening (port string, user string){
-	/* 
-	StarListening: inicia un servidor que escucha conexiones entrantes
-	port : puerto para abrir conexion  
-	user: nombre de usuario
-	*/
+var username string
 
+<<<<<<< Updated upstream
 	username=user  //Guarda el nombre de usuario en la variable global
 	listener, err := net.Listen("tcp",":"+port)
 	/*
@@ -23,10 +19,17 @@ func StarListening (port string, user string){
 	*/
 	if err != nil {
 		fmt.Println("Error Listening:", err.Error())
+=======
+func StartListening(port string, user string) {
+	username = user
+	listener, err := net.Listen("tcp", ":"+port)
+	if err != nil {
+		fmt.Println("Error listening:", err.Error())
+>>>>>>> Stashed changes
 		return
 	}
-	//Si err no es nulo,imprime un mensaje de error y termina la ejecucion
 
+<<<<<<< Updated upstream
 
 	defer listener.Close() 
 	fmt.Printf("Peer is listening on port %v ...", port ) 
@@ -46,40 +49,55 @@ func StarListening (port string, user string){
 			Llama a sendMessage(conn), que envía un mensaje al cliente.
 			Como sendMessage se ejecuta después de go receiveMessage(conn), 
 			el programa primero empieza a recibir mensajes y luego envía uno.*/
+=======
+	defer listener.Close()
+	fmt.Printf("Peer is listening on port %v ...\n", port)
+	for {
+		conn, err := listener.Accept()
+		if err != nil {
+			fmt.Println("Error accepting conections: ", err.Error())
+			continue
+>>>>>>> Stashed changes
 		}
 }
 
+<<<<<<< Updated upstream
 
 func ConnectToPeer (address string, user string){
 	/* Intenta conectarse a otro usuario que ya esta escuchando conexiones 
 	addres: direccion ip y puerto del otro usuario
 	user: nombre del usuario */
 	username = user 
+=======
+func ConnectToPeer(address string, user string) {
+	username = user
+>>>>>>> Stashed changes
 	conn, err := net.Dial("tcp", address)
-	//net.Dial("tcp", address): Intenta conectarse al otro usuario en la dirección especificada.
-
 	if err != nil {
+<<<<<<< Updated upstream
 		fmt.Println("Error connecting to peer:", err.Error())
+=======
+		fmt.Println("Error connecting to peer: ", err.Error())
+>>>>>>> Stashed changes
 		return
 	} //Si hay un error, muestra el mensaje y la conexion termina
 
+<<<<<<< Updated upstream
 	defer conn.Close() //cierre de la conexion
 	go receiveMessage(conn) // Recibe mensajes del otro usuario en un hilo separado.
 	sendMessage(conn)// Envia un mensaje al otro usuario
+=======
+	go receiveMessage(conn)
+	sendMessage(conn)
+>>>>>>> Stashed changes
 }
 
 
 
 
-func receiveMessage(conn net.Conn){ //recibe un mensaje de la conexion 
-	defer conn.Close() //cierra la conexion automaticamente cuando termina la conexión
-	reader := bufio.NewReader(conn) // leer datos desde la conexión
-	message, _ := reader.ReadString('\n') /*
-	lee datos hasta encontrar un salto de línea 
-	Guarda el mensaje en la variable message.
-	*/
-	fmt.Print(message) //Imprime el mensaje recibido en la consola.
+		formato := fmt.Sprintf("%s: %s\n", username, message)
 
+<<<<<<< Updated upstream
 }
 
 func sendMessage(conn net.Conn){//envia un mensaje a la conexión
@@ -95,6 +113,14 @@ func sendMessage(conn net.Conn){//envia un mensaje a la conexión
 	if err != nil {
 		fmt.Println("Error sending message:", err.Error())
 	
+=======
+		_, err := writer.WriteString(formato)
+
+		if err != nil {
+			fmt.Println("Error sending message: ", err.Error())
+		}
+		writer.Flush()
+		fmt.Println("Your message: ")
+>>>>>>> Stashed changes
 	}
-	writer.Flush()// envía el mensaje a través de la conexión
 }
