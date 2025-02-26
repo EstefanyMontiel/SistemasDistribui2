@@ -17,5 +17,3 @@ public class HobbiesResponseDto
         public int Top { get; set; }
 
 }
-
-
