@@ -2,7 +2,7 @@ namespace  PokemonApi.Dtos
 {
 public class PokemonResponseDto
 {
-public Guid id {get; set;}
+public Guid id  {get; set;}
 
 public string name {get; set;}
 
