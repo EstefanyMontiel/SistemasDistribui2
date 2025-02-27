@@ -10,15 +10,26 @@ builder.Services.AddSoapCore();
 builder.Services.AddSingleton<IPokemonService, PokemonService>();
 builder.Services.AddScoped<IPokemonRepository,PokemonRepository>();
 
+<<<<<<< Updated upstream
 //para que sirven
 builder.Services.AddScoped<IPokemonService,PokemonService>(); 
+=======
+//Hobby
+ builder.Services.AddSingleton<IHobbyService, HobbyService>();
+ builder.Services.AddScoped<IHobbyRepository,HobbyRepository>();
+
+>>>>>>> Stashed changes
 
 builder.Services.AddDbContext<RelationalDbContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), 
 ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection")))); //conexion a la base de datos
 var app = builder.Build();
 
 app.UseSoapEndpoint<IPokemonService>("/PokemonService.svc", new SoapEncoderOptions()); //levantar el servicio 
+<<<<<<< Updated upstream
 //IPokemonService es la interfaz que se va a exponer
 
 
+=======
+ app.UseSoapEndpoint<IHobbyService>("/EstefanyMontielService.svc", new SoapEncoderOptions()); //levantar el servicio 
+>>>>>>> Stashed changes
 app.Run();

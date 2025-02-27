@@ -28,8 +28,19 @@ namespace PokemonApi.Infrastructure
 <<<<<<< HEAD
                 entity.Property(s=>s.Health).IsRequired(); //Vida es requerido
 
+<<<<<<< Updated upstream
 =======
 >>>>>>> parent of 4d13259 (Merge pull request #5 from EstefanyMontiel/feature_branch_api)
+=======
+            }); 
+
+            
+            modelBuilder.Entity<HobbyEntity>(entity=>{
+
+                 entity.HasKey(b=>b.Id); //Llave primaria
+                 entity.Property(b=>b.Name).IsRequired().HasMaxLength(100); //Nombre es requerido
+                 entity.Property(b=>b.Top).IsRequired(); //Top es requerido
+>>>>>>> Stashed changes
             }); 
 
          }
