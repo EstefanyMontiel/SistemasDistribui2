@@ -26,7 +26,7 @@ namespace PokemonApi.Migrations
                     Level = table.Column<int>(type: "int", nullable: false),
                     attack = table.Column<int>(type: "int", nullable: false),
                     Defense = table.Column<int>(type: "int", nullable: false),
-                    Speed = table.Column<int>(type: "int", nullable: false)
+                    Speed = table.Column<int>(type: "int", nullable: false),
                 },
                 constraints: table =>
                 {
