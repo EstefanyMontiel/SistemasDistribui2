@@ -38,4 +38,15 @@ namespace PokemonApi.Mappers;
          
        };
    }
+
+
+   
+   public static Hobby ToModel (this CreateHobbyDto hobby){
+    return new Hobby {
+        
+            Name = hobby.Name,
+            Top = hobby.Top
+    };
+   }
+   
 }

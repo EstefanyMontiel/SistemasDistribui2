@@ -4,7 +4,7 @@ using PokemonApi.Models;
 
 namespace PokemonApi.Services;
 
-      [ServiceContract(Name = "EstefanyMontielService", Namespace ="http://pokemon-api/hobby-service")]
+      [ServiceContract(Name = "EstefanyMontielService", Namespace ="http://pokemon-api/hobbies-service")]
 
       public interface IHobbyService
      {
@@ -18,6 +18,13 @@ namespace PokemonApi.Services;
     
      [OperationContract]
        Task<List<HobbiesResponseDto>> GetHobbiesByName(string name, CancellationToken cancellationToken);
- 
+
+
+      [OperationContract]
+      Task<HobbiesResponseDto> CreateHobby(CreateHobbyDto createHobbyDto, CancellationToken cancellationToken);
+
+     [OperationContract]
+      Task<HobbiesResponseDto> UpdateHobby(UpdateHobbyDto updateHobbyDto, CancellationToken cancellationToken);
+
      }
      

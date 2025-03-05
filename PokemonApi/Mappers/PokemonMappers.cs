@@ -18,6 +18,9 @@ public static class PokemonMapper{
             Speed = pokemon.Stats.Speed      
       };
     }
+            Speed = pokemon.Stats.Speed     
+            };
+            }
 
    public static Pokemon ToModel(this PokemonEntity entity){
     if(entity is null) {
@@ -65,6 +68,7 @@ public static class PokemonMapper{
    }
 
 
+   
     public static Stats ToModel (this StatsDto stats){
     return new Stats{
         Attack = stats.Attack,

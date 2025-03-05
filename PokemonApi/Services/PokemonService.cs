@@ -26,8 +26,8 @@ public async Task<bool> DeletePokemon(Guid id, CancellationToken cancellationTok
         throw new FaultException("Pokemon not found");
        }
         await _pokemonRepository.DeleteAsync(pokemon, cancellationToken);
-        return true;
-    }
+        return true;
+        }
 
     public async Task<PokemonResponseDto> CreatePokemon(CreatePokemonDto createPokemonDto, CancellationToken cancellationToken){
         var  pokemonToCreate = createPokemonDto.ToModel();
