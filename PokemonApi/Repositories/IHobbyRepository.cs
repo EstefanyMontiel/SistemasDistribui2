@@ -11,4 +11,7 @@ namespace PokemonApi.Repositories;
      Task DeleteHobbyAsync (Hobby hobby, CancellationToken cancellationToken);
      Task <List<Hobby>> GetHobbiesByNamedAsync(string name, CancellationToken cancellationToken);
 
+    Task AddAsync(Hobby hobby, CancellationToken cancellationToken);
+     Task UpdateAsync (Hobby hobby, CancellationToken cancellationToken);
+     
     }

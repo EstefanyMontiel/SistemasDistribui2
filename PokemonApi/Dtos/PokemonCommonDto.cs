@@ -2,6 +2,7 @@ using System.Runtime.Serialization;
 namespace PokemonApi.Dtos;
 
 [DataContract(Name = "PokemonCommonDto", Namespace = "http://pokemon-api/hobbies-service")]
+[DataContract(Name = "PokemonCommonDto", Namespace = "http://pokemon-api/pokemon-service")]
 [KnownType(typeof(CreatePokemonDto))]
 [KnownType(typeof(UpdatePokemonDto))]
 
