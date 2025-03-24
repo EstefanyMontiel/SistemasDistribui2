@@ -20,7 +20,7 @@ public class PokemonsController : ControllerBase
     [HttpGet("{id}") ]
     public async Task<ActionResult<PokemonResponse>> GetPokemonById(Guid id, CancellationToken cancellationToken)
     {
-        var pokemon = await _pokemonService.GetPokemonByIdAsync(id, cancellationToken);       
+        var pokemon = await _pokemonService.GetPokemonById(id, cancellationToken);       
         if (pokemon == null){
             return NotFound();
         }
