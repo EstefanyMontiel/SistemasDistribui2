@@ -13,7 +13,7 @@ public class PokemonService : IPokemonService
         _pokemonRepository = pokemonRepository; 
     }
 
-    public async Task<Pokemon?> GetPokemonByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<Pokemon?> GetPokemonById(Guid id, CancellationToken cancellationToken)
     {
         return await _pokemonRepository.GetPokemonByIdAsync (id, cancellationToken); 
     }
