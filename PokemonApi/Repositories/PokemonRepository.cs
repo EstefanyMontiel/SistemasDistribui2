@@ -24,7 +24,7 @@ public class PokemonRepository : IPokemonRepository
     return Pokemon.ToModel();
     }
 
-   public async Task <List<Pokemon>> GetPokemonsByNameAsync(string name,CancellationToken cancellationToken){
+    public async Task <List<Pokemon>> GetPokemonsByNameAsync(string name,CancellationToken cancellationToken){
         var pokemon = await _context.Pokemons.AsNoTracking().Where(s => s.Name.Contains(name)).ToListAsync(cancellationToken);
      return pokemon.Select(h => h.ToModel()).ToList(); 
      }

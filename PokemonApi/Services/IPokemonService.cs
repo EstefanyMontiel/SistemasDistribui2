@@ -23,4 +23,7 @@ namespace PokemonApi.Services;
 
          [OperationContract]
         Task<PokemonResponseDto> UpdatePokemon(UpdatePokemonDto createPokemonDto, CancellationToken cancellationToken);
+
+        [OperationContract]
+         Task<List<PokemonResponseDto>> GetPokemonByName(string name,CancellationToken cancellationToken);
     }
