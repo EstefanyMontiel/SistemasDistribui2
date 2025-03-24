@@ -11,6 +11,10 @@ namespace PokemonApi.Services;
      [OperationContract]
      Task<PokemonResponseDto> GetPokemonById(Guid id, CancellationToken cancellationToken); //metodo que se va a exponer
      
+
+     [OperationContract]
+         Task<List<PokemonResponseDto>> GetPokemonByName(string name,CancellationToken cancellationToken);
+         
      [OperationContract]
         Task<bool> DeletePokemon(Guid id, CancellationToken cancellationToken);
         
