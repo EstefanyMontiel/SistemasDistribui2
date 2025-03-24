@@ -69,8 +69,6 @@ public async Task<bool> DeletePokemon(Guid id, CancellationToken cancellationTok
   
     return pokemons.Select(h => h.ToDto()).ToList();
     }
+        }
 
-
-    
-
-}
+  
