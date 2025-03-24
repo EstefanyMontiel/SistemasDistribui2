@@ -32,6 +32,43 @@ public class PokemonRepository : IPokemonRepository
                 return null; 
             }
     }
+
+
+    public async Task<IEnumerable<Pokemon>?> GetPokemonByNameAsync(string name, CancellationToken cancellationToken)
+{
+    try
+    {
+        var pokemons = await _pokemonService.GetPokemonByName(name, cancellationToken);
+        return pokemons?.Select(p => p.ToModel()) ?? new List<Pokemon>();
+    }
+    catch (FaultException ex) when (ex.Message.Contains("Pokemon not found"))
+    {
+        _logger.LogError(ex, "Failed to get pokemon with name: {name}", name);
+        return Enumerable.Empty<Pokemon>();
+    }
+}
+
+public async Task<bool> DeletePokemonByIdAsync(Guid id, CancellationToken cancellationToken)
+{
+    try
+    {
+         await _pokemonService.DeletePokemonById(id, cancellationToken);
+         return true;
+    }
+    catch (FaultException ex) when (ex.Message.Contains("Pokemon not found"))
+    {
+       
+        return false;
+    }
+    catch (FaultException ex)
+    {
+        _logger.LogError(ex, "Failed to delete pokemon with id: {id}", id);
+        throw;
+    }
+
+
+}
+
 }
 
 
