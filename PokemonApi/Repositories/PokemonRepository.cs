@@ -23,6 +23,7 @@ public class PokemonRepository : IPokemonRepository
     var Pokemon = await _context.Pokemons.AsNoTracking().FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
     return Pokemon.ToModel();
     }
+
     public async Task <List<Pokemon>> GetPokemonsByNameAsync(string name,CancellationToken cancellationToken){
         var pokemon = await _context.Pokemons.AsNoTracking().Where(s => s.Name.Contains(name)).ToListAsync(cancellationToken);
      return pokemon.Select(h => h.ToModel()).ToList(); 
@@ -38,10 +39,11 @@ public class PokemonRepository : IPokemonRepository
         await _context.Pokemons.AddAsync(pokemon.ToEntity(), cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
     }
+    }
 
     public async Task UpdateAsync(Pokemon pokemon, CancellationToken cancellationToken){
        _context.Pokemons.Update(pokemon.ToEntity()); 
        await _context.SaveChangesAsync(cancellationToken);
     }
     
-}
+}}

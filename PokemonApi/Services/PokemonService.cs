@@ -53,9 +53,9 @@ public async Task<bool> DeletePokemon(Guid id, CancellationToken cancellationTok
 
         await _pokemonRepository.UpdateAsync(pokemonToUpdate, cancellationToken);
         return pokemonToUpdate.ToDto();
-        }
+    }
 
-    public async Task<List<PokemonResponseDto>> GetPokemonByName(string name,CancellationToken cancellationToken){
+   public async Task<List<PokemonResponseDto>> GetPokemonByName(string name,CancellationToken cancellationToken){
 
           
     var pokemons = await _pokemonRepository.GetPokemonsByNameAsync(name, cancellationToken);
@@ -69,5 +69,6 @@ public async Task<bool> DeletePokemon(Guid id, CancellationToken cancellationTok
   
     return pokemons.Select(h => h.ToDto()).ToList();
     }
-}
+        }
 
+  
