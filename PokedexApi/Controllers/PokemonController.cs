@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using PokedexApi.Services;
 using PokedexApi.Dtos;
-using PokedexApi.Mappers; 
+using PokedexApi.Mappers;
+using PokedexApi.Models;
+using System.ServiceModel.Channels;
+using PokedexApi.Exceptions;
 
 namespace PokedexApi.Controllers;
 
@@ -42,6 +45,7 @@ public async Task<ActionResult<List<PokemonResponse>>> GetPokemonByName([FromQue
 //404 -not found
 //204 -No content(se encontro y elimino el pokemon) de forma correcta pero el body de respuesta esta vacia
 //200 -OK se encontró y se elimino el pokemon y en el body de respuesta se envia un msj de exito
+//201 Información 
 
 [HttpDelete("{id}")]
 public async Task<ActionResult> DeletePokemonById(Guid id, CancellationToken cancellationToken)
@@ -56,4 +60,26 @@ public async Task<ActionResult> DeletePokemonById(Guid id, CancellationToken can
     return NotFound();
 
 }
+
+[HttpPost]
+
+public async Task<ActionResult<PokemonResponse>> CreatePokemon([FromBody]CreatePokemonRequest pokemon, CancellationToken cancellationToken)
+{
+try {
+
+
+var createdPokemon = await _pokemonService.CreatePokemonAsync(pokemon.ToModel(), cancellationToken);
+
+return CreatedAtAction(nameof(GetPokemonById), new {id = createdPokemon.Id}, createdPokemon.ToDto());
+
+} catch(PokemonValidationException ex){
+    return BadRequest(new{message= ex.Message}); 
 }
+catch(PokemonAlreadyExistsException ex){
+    return Conflict(new{message= $"Pokemon' {ex.PokemonName}'already exists", exception = ex.Message}); 
+}
+
+}
+
+}
+
