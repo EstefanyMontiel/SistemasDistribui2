@@ -28,4 +28,9 @@ public class PokemonService : IPokemonService
         return await _pokemonRepository.DeletePokemonByIdAsync(id, cancellationToken);
     }
 
+    public async Task<Pokemon> CreatePokemonAsync(Pokemon pokemon, CancellationToken cancellationToken){
+        //
+        return await _pokemonRepository.CreatePokemonAsync(pokemon, cancellationToken); 
+
+    }
 }

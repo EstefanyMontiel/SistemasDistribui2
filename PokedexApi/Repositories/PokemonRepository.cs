@@ -2,6 +2,7 @@ using System.ServiceModel;
 using PokedexApi.Mappers;
 using PokedexApi.Models;
 using PokedexApi.Infrastructure.Soap.Contracts;
+using PokedexApi.Exceptions;
 
 namespace PokedexApi.Repositories; 
 
@@ -68,6 +69,22 @@ public async Task<bool> DeletePokemonByIdAsync(Guid id, CancellationToken cancel
         throw;
     }
 
+}
+
+public async Task<Pokemon> CreatePokemonAsync(Pokemon pokemon, CancellationToken cancellationToken){
+    try{
+        var pokemonCreated = await _pokemonService.CreatePokemon(pokemon.ToSoapDto(), cancellationToken);
+        return pokemonCreated.ToModel();
+    }
+    catch(FaultException ex) when(ex.Message.Contains("Pokemon"))
+    {
+        throw new PokemonValidationException(ex.Message); 
+                }
+                
+    catch(FaultException ex){
+        _logger.LogError(ex, "Error  creating pokemon");
+        throw; 
+    }
 }
 
 }
